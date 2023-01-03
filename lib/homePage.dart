@@ -36,7 +36,14 @@ class _HomePageState extends State<HomePage> {
               ),
               TextField(
                 controller: c1,
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(20)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.amberAccent),
+                        borderRadius: BorderRadius.circular(20)),
                     hintStyle: TextStyle(color: Colors.white),
                     hintText: "Enter OTP Length.",
                     focusColor: Colors.white),
@@ -90,9 +97,8 @@ class _HomePageState extends State<HomePage> {
                   color: Color(0xfff6db87),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                //use map loop here
                 // child: Text(
-                //   "$rndnumlist",
+                //   "$otplist",
                 //   style: TextStyle(fontSize: 30, letterSpacing: 2),
                 // ),
                 child: Row(
@@ -100,26 +106,37 @@ class _HomePageState extends State<HomePage> {
                   children: rndnumlist
                       .asMap()
                       .entries
-                      .map((e) => otplist[rndnumlist[e.key]].toList()),
+                      .map((e) => Text(
+                            "${rndnumlist[e.key]}",
+                            style: TextStyle(
+                                fontSize: 30,
+                                color: Color(0xff15172b),
+                                letterSpacing: 3),
+                          ))
+                      .toList(),
                 ),
               ),
               SizedBox(
                 height: 80,
               ),
-              Container(
-                height: 50,
-                width: 150,
-                decoration: BoxDecoration(
-                    color: Color(0xffffe8b8),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0xfff6db87),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(20)),
-                child: Center(
+              InkWell(
+                onTap: () {
+                  rndnumlist.clear();
+                },
+                child: Container(
+                  height: 50,
+                  width: 150,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: Color(0xffffe8b8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0xfff6db87),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(20)),
                   child: Text(
                     "Reset",
                     style: TextStyle(color: Color(0xff15172b), fontSize: 28),
